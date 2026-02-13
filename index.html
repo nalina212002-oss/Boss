@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday 🎉</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            color: white;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 60px;
+            font-size: 40px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: white;
+            color: #5b86e5;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #cakeSection, #teddySection {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .cake {
+            font-size: 90px;
+        }
+
+        .flame {
+            font-size: 35px;
+            animation: flicker 0.8s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        .smoke {
+            font-size: 30px;
+            animation: fadeSmoke 2s forwards;
+        }
+
+        @keyframes fadeSmoke {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-30px); }
+        }
+
+        .firework {
+            position: absolute;
+            font-size: 30px;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            from { transform: scale(0.5); opacity: 1; }
+            to { transform: scale(3); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>WISH U MANY MANY MORE HAPPY RETURNS OF THE TOPPER(KULLII🐥🎀)🤍🐇🎉AND I WISH TO BE HAPPY ALWAYS WITH YOUR CUTE SMILE ON YOUR FACE ☺️😍😍 ALWAYS (I SAY IT FOR U ITS LOOK GOOD FOR U SO SMILE OK🤍🤭)</h1>
+    <p>Let’s start the celebration! 🎂✨</p>
+
+    <button onclick="showCake()">Click to Show Cake 🎂</button>
+
+    <!-- Cake Section -->
+    <div id="cakeSection">
+        <div id="flame" class="flame">🔥</div>
+        <div class="cake">🎂</div>
+
+        <button onclick="blowCandle()">Blow Candle 🕯</button>
+        <div id="smokeArea"></div>
+    </div>
+
+    <!-- Teddy Section -->
+    <div id="teddySection">
+        <h2>🧸 Teddy Says:</h2>
+        <p>I have a surprise for you 💝</p>
+
+        <button onclick="showSurprise()">Click for Surprise 🎁</button>
+        <button onclick="showMemories()">Our Memories 📸</button>
+    </div>
+
+    <script>
+
+        function showCake() {
+            document.getElementById("cakeSection").style.display = "block";
+        }
+
+        function blowCandle() {
+            let flame = document.getElementById("flame");
+            flame.style.display = "none";
+
+            let smoke = document.createElement("div");
+            smoke.classList.add("smoke");
+            smoke.innerHTML = "💨";
+            document.getElementById("smokeArea").appendChild(smoke);
+
+            setTimeout(() => {
+                startFireworks();
+                document.getElementById("teddySection").style.display = "block";
+            }, 1200);
+        }
+
+        function startFireworks() {
+            for (let i = 0; i < 15; i++) {
+                let firework = document.createElement("div");
+                firework.classList.add("firework");
+                firework.innerHTML = "🎆";
+                firework.style.left = Math.random() * 100 + "vw";
+                firework.style.top = Math.random() * 100 + "vh";
+                document.body.appendChild(firework);
+
+                setTimeout(() => {
+                    firework.remove();
+                }, 1000);
+            }
+        }
+
+        function showSurprise() {
+            alert("You are an amazing friend! May your life be full of happiness and success! 🎉✨");
+        }
+
+        function showMemories() {
+            alert("From crazy laughs to unforgettable moments, every memory with you is special! 💖📸");
+        }
+
+    </script>
+
+</body>
+</html>
