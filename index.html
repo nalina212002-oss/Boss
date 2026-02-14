@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise</title>
+
+<style>
+body{
+margin:0;
+font-family: Arial, sans-serif;
+text-align:center;
+overflow:hidden;
+background:linear-gradient(to right,#ff9a9e,#fad0c4);
+}
+
+section{
+display:none;
+min-height:100vh;
+padding:40px 20px;
+color:white;
+}
+
+#welcome{display:block;}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:25px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+margin:10px;
+}
+
+button:hover{background:#e91e63;}
+
+/* Celebration */
+#celebration{
+background:linear-gradient(to right,#141e30,#243b55);
+position:relative;
+overflow:hidden;
+}
+
+/* Decorations */
+.decoration{
+position:absolute;
+font-size:40px;
+animation:float 4s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-100vh);}
+}
+
+/* Cake */
+#cake{
+display:none;
+margin-top:30px;
+}
+
+.cake-body{
+width:150px;
+height:100px;
+background:#ffcc80;
+margin:0 auto;
+border-radius:10px;
+position:relative;
+}
+
+.candle{
+width:10px;
+height:40px;
+background:white;
+position:absolute;
+top:-40px;
+left:70px;
+}
+
+.flame{
+width:12px;
+height:20px;
+background:orange;
+border-radius:50%;
+position:absolute;
+top:-20px;
+left:-1px;
+animation:flicker 0.5s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+50%{opacity:0.4;}
+100%{opacity:1;}
+}
+
+/* Crackers */
+.cracker{
+position:fixed;
+width:8px;
+height:8px;
+border-radius:50%;
+animation:blast 1s ease-out forwards;
+}
+
+@keyframes blast{
+0%{transform:scale(1);}
+100%{transform:scale(20);opacity:0;}
+}
+
+/* Message */
+#message{
+background:linear-gradient(to right,#ff758c,#ff7eb3);
+}
+
+.letter{
+background:white;
+color:black;
+padding:20px;
+border-radius:15px;
+max-width:400px;
+margin:20px auto;
+}
+
+/* Gallery */
+#gallery{
+background:linear-gradient(to right,#667eea,#764ba2);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:10px;
+margin-top:20px;
+}
+
+.grid img{
+width:100%;
+border-radius:10px;
+transition:0.3s;
+}
+
+.grid img:hover{transform:scale(1.1);}
+</style>
+</head>
+
+<body>
+
+<!-- Welcome -->
+<section id="welcome">
+<h1>🎂 Happy Birthday 🎂</h1>
+<button onclick="goCelebrate()">Start Celebration</button>
+</section>
+
+<!-- Celebration -->
+<section id="celebration">
+<h1>🎉 Birthday Celebration 🎉</h1>
+<button onclick="startDecoration()">Decorate</button>
+
+<div id="cake">
+<div class="cake-body">
+<div class="candle">
+<div class="flame" id="flame"></div>
+</div>
+</div>
+<br>
+<button onclick="blowCandle()">Blow Candle 🎂</button>
+</div>
+</section>
+
+<!-- Message -->
+<section id="message">
+<h1>💌 Surprise Message</h1>
+<div class="letter">
+<p>Dear Friend,</p>
+<p>May your life be filled with happiness, success and love ❤️</p>
+<p>Happy Birthday 🎉</p>
+</div>
+<button onclick="goGallery()">See Memories 📸</button>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+<h1>📸 Our Memories</h1>
+<div class="grid">
+<img src="https://picsum.photos/200?1">
+<img src="https://picsum.photos/200?2">
+<img src="https://picsum.photos/200?3">
+<img src="https://picsum.photos/200?4">
+</div>
+<h3>Forever Yours ❤️</h3>
+</section>
+
+<script>
+
+function goCelebrate(){
+document.getElementById("welcome").style.display="none";
+document.getElementById("celebration").style.display="block";
+}
+
+function startDecoration(){
+
+// Create floating decorations
+for(let i=0;i<20;i++){
+let deco=document.createElement("div");
+deco.className="decoration";
+deco.innerHTML="🎈🎊🎉";
+deco.style.left=Math.random()*100+"%";
+deco.style.animationDuration=(3+Math.random()*3)+"s";
+document.getElementById("celebration").appendChild(deco);
+}
+
+// After 4 seconds show cake
+setTimeout(()=>{
+document.getElementById("cake").style.display="block";
+},4000);
+}
+
+function blowCandle(){
+
+document.getElementById("flame").style.display="none";
+
+// Full screen crackers
+for(let i=0;i<50;i++){
+let c=document.createElement("div");
+c.className="cracker";
+c.style.left=Math.random()*100+"%";
+c.style.top=Math.random()*100+"%";
+c.style.background="hsl("+Math.random()*360+",100%,50%)";
+document.body.appendChild(c);
+}
+
+// After 2 seconds go to message page
+setTimeout(()=>{
+document.getElementById("celebration").style.display="none";
+document.getElementById("message").style.display="block";
+},2000);
+}
+
+function goGallery(){
+document.getElementById("message").style.display="none";
+document.getElementById("gallery").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
